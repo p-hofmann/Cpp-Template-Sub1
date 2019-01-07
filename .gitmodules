@@ -1,0 +1,3 @@
+[submodule "include/CPlusPlus-Template-Submodule1-Submodule"]
+	path = include/CPlusPlus-Template-Submodule1-Submodule
+	url = git@github.com:p-hofmann/CPlusPlus-Template-Submodule1-Submodule.git
