@@ -38,4 +38,4 @@ Continuous integration using [Travis CI](https://travis-ci.com/) is supported. T
 * tests - Unittest files of current module
 
 As Cpp-Template-Sub1-Sub is not a third party project and considered part of this build, 
-it is included in the 'included' folder, not the 'external' folder.
+it is included in the 'include' folder, not the 'external' folder.
