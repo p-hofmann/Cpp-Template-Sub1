@@ -9,6 +9,8 @@ The [Catch2](https://github.com/catchorg/Catch2) source is not included in this 
 Continuous integration using [Travis CI](https://travis-ci.com/) is supported. The Code is there tested on Linux, Darwin and Windows OS.
 [Circle CI](https://circleci.com/) is supported, but the Code is tested on Linux only. for now.
 
+## Project Layout
+
 ├── CMakeLists.txt  
 ├── .travis.yml  
 ├── .circleci  
@@ -36,6 +38,6 @@ Continuous integration using [Travis CI](https://travis-ci.com/) is supported. T
 * src - Source files of current module
 * external - External projects that are not developed as part of this project.
 * tests - Unittest files of current module
-
-As Cpp-Template-Sub1-Sub is not a third party project and considered part of this build, 
+* [Catch2](https://github.com/catchorg/Catch2) will be downloaded as part of cmake when run on unittests
+* Cpp-Template-Sub1-Sub is not a third party project and considered part of this build, 
 it is included in the 'include' folder, not the 'external' folder.
