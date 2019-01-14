@@ -18,20 +18,21 @@ endif ()
 # Gather src files that depending on a specific OS
 if (UNIX)
     if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        set(PLATFORM_DEPENENT_FILES)
+        set(PLATFORM_DEPENENT_FILES include/Cpp-Template-Sub1-Sub/src/cpptemplatesub1sub_DARWIN.cpp)
     else ()
-        set(PLATFORM_DEPENENT_FILES)
+        set(PLATFORM_DEPENENT_FILES include/Cpp-Template-Sub1-Sub/src/cpptemplatesub1sub_LINUX.cpp)
     endif ()
 elseif (WIN32)
-    set(PLATFORM_DEPENENT_FILES)
+    set(PLATFORM_DEPENENT_FILES include/Cpp-Template-Sub1-Sub/src/cpptemplatesub1sub_WIN32.cpp)
 else ()
     message(SEND_ERROR "Unknown OS")
 endif ()
 
 # Make a static library
+# As the submodule is not a library of its own, the files will be added
 add_library(CppTemplateSub1
-    ${PLATFORM_DEPENENT_FILES}
     src/cpptemplatesub1.cpp include/Cpp-Template-Sub1/cpptemplatesub1.h
+    ${PLATFORM_DEPENENT_FILES}
     include/Cpp-Template-Sub1-Sub/include/cpptemplatesub1sub.h
     )
 
@@ -41,6 +42,7 @@ target_include_directories(CppTemplateSub1
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Cpp-Template-Sub1-Sub/include
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
