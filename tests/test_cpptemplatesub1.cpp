@@ -20,6 +20,16 @@ TEST_CASE("Test getClassName", "[DummySub1]")
 }
 
 /*!
+ * Testing default toString()
+ */
+TEST_CASE("Test toString", "[DummySub1]")
+{
+    DummySub1 module;
+    std::string description = module.toString();
+    REQUIRE(!description.empty());
+}
+
+/*!
  * Testing setDummyValue getDummyValue
  */
 TEST_CASE("Test setDummyValue", "[DummySub1]")
