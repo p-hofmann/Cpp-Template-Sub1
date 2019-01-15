@@ -37,12 +37,6 @@ jobs:
           name: Check Catch2
           command: 'ls -l Build-Debug/'
       - run:
-          name: Check Catch2 2
-          command: 'ls -l Build-Debug/external'
-      - run:
-          name: Check Catch2 3
-          command: 'ls -l Build-Debug/external/Catch2'
-      - run:
           name: Creating Binary Files
           command: 'cmake --build Build-Debug'
       - run:
