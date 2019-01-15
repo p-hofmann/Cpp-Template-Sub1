@@ -53,4 +53,4 @@ enable_testing()
 add_subdirectory(tests)
 
 # add submodule library
-add_subdirectory(include/Cpp-Template-Sub1-Sub)
+#add_subdirectory(include/Cpp-Template-Sub1-Sub)
