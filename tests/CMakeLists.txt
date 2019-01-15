@@ -12,15 +12,15 @@ if (NOT TARGET catch2_project)
     include(ExternalProject)
     ExternalProject_Add(
         catch2_project
-        PREFIX ${CMAKE_BINARY_DIR}/catch2
-        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2
+        PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2
+#        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2
         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
         GIT_TAG origin/master
-#        GIT_SHALLOW 1
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
         INSTALL_COMMAND ""
     )
+    # GIT_SHALLOW 1
     # CONFIGURE BUILD and INSTALL are passed an empty string to prevent those unrequired steps.
 
     # save location git repository in SOURCE_DIR
