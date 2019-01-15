@@ -50,24 +50,23 @@ set(INCLUDE_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
 # Gather src files that depending on a specific OS
-if (UNIX)
-    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        set(PLATFORM_DEPENENT_FILES)
-    else ()
-        set(PLATFORM_DEPENENT_FILES)
-    endif ()
-elseif (WIN32)
-    set(PLATFORM_DEPENENT_FILES)
-else ()
-    message(SEND_ERROR "Unknown OS")
-endif ()
+#if (UNIX)
+#    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+#        set(PLATFORM_DEPENENT_FILES)
+#    else ()
+#        set(PLATFORM_DEPENENT_FILES)
+#    endif ()
+#elseif (WIN32)
+#    set(PLATFORM_DEPENENT_FILES)
+#else ()
+#    message(SEND_ERROR "Unknown OS")
+#endif ()
 
 # Project will be made into an executable
 add_executable(${TEST_PROJECT_NAME}
     test_cpptemplatesub1.cpp
-    ${PLATFORM_DEPENENT_FILES}
+#    ${PLATFORM_DEPENENT_FILES}
     ${SRC_LOCATION}/cpptemplatesub1.cpp ${INCLUDE_LOCATION}/Cpp-Template-Sub1/cpptemplatesub1.h
-    ${INCLUDE_LOCATION}/Cpp-Template-Sub1-Sub/include/cpptemplatesub1sub.h
     )
 
 # This will specify for this project only, /src and /include as the folders to look into for files
@@ -76,12 +75,15 @@ target_include_directories(${TEST_PROJECT_NAME}
         $<BUILD_INTERFACE:${INCLUDE_LOCATION}>
         $<INSTALL_INTERFACE:${INCLUDE_LOCATION}>
         ${INCLUDE_LOCATION}/Cpp-Template-Sub1
-        ${INCLUDE_LOCATION}/Cpp-Template-Sub1-Sub/include
     PRIVATE
         ${SRC_LOCATION}
         ${CATCH2_INCLUDE_DIR}
     )
-# Note, that the catch2 library lcation was added
+# Note, that the catch2 library location was added
+
+# add submodule library
+target_link_libraries(${TEST_PROJECT_NAME} CppTemplateSub1Sub)
+
 
 # Make sure that Catch2 exists
 add_dependencies(${TEST_PROJECT_NAME} catch2_project)
