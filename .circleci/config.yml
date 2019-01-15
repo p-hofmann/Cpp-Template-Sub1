@@ -34,15 +34,6 @@ jobs:
             COVERAGE: 1
             EXTRAS: 1
       - run:
-          name: Check Catch2
-          command: 'ls -l Build-Debug/tests'
-      - run:
-          name: Check Catch2 2
-          command: 'ls -l Build-Debug/tests/catch2_project-prefix/src/catch2_project/'
-      - run:
-          name: Check Catch2 3
-          command: 'ls -l Build-Debug/tests/catch2_project-prefix/src/catch2_project/single_include/catch2'
-      - run:
           name: Creating Binary Files
           command: 'cmake --build Build-Debug'
       - run:
