@@ -47,6 +47,12 @@ target_include_directories(CppTemplateSub1
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
 
+# add external projects
+add_subdirectory(external)
+
+# add submodules
+add_subdirectory(include/Cpp-Template-Sub1-Sub)
+
 # Add Unittest
 # This is done before submodules, or the catch2 will be cloned to the submodule location
 enable_testing()
