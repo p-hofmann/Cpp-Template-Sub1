@@ -69,6 +69,12 @@ add_executable(${TEST_PROJECT_NAME}
     ${SRC_LOCATION}/cpptemplatesub1.cpp ${INCLUDE_LOCATION}/Cpp-Template-Sub1/cpptemplatesub1.h
     )
 
+# add submodule library
+target_link_libraries(${TEST_PROJECT_NAME} CppTemplateSub1Sub)
+
+# Make sure that Catch2 exists
+add_dependencies(${TEST_PROJECT_NAME} catch2_project)
+
 # This will specify for this project only, /src and /include as the folders to look into for files
 target_include_directories(${TEST_PROJECT_NAME}
     PUBLIC
@@ -80,13 +86,6 @@ target_include_directories(${TEST_PROJECT_NAME}
         ${CATCH2_INCLUDE_DIR}
     )
 # Note, that the catch2 library location was added
-
-# add submodule library
-target_link_libraries(${TEST_PROJECT_NAME} CppTemplateSub1Sub)
-
-
-# Make sure that Catch2 exists
-add_dependencies(${TEST_PROJECT_NAME} catch2_project)
 
 # Adding test for 'ctest'
 add_test(
