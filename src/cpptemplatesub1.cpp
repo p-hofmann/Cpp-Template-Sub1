@@ -2,7 +2,7 @@
  * Created by Peter Hofmann on 13.01.19.
  */
 
-#include "Cpp-Template-Sub1/cpptemplatesub1.h"
+#include "cpptemplatesub1.h"
 
 using namespace SubModule1;
 

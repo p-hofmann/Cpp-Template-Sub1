@@ -41,7 +41,7 @@ target_include_directories(CppTemplateSub1
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Cpp-Template-Sub1
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Cpp-Template-Sub1-Sub/include
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src

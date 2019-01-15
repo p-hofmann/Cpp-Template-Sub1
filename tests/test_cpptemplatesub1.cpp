@@ -6,7 +6,7 @@
 
 #include <string>
 #include "catch.hpp"
-#include "Cpp-Template-Sub1/cpptemplatesub1.h"
+#include "cpptemplatesub1.h"
 
 using namespace SubModule1;
 

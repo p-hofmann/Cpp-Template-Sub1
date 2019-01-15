@@ -6,7 +6,7 @@
 #define CPPTEMPLATESUB1_CPPTEMPLATESUB1_H
 
 #include <string>
-#include "Cpp-Template-Sub1-Sub/include/cpptemplatesub1sub.h"
+#include "cpptemplatesub1sub.h"
 
 namespace SubModule1
 {
