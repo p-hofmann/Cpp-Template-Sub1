@@ -1,0 +1,4 @@
+[submodule "include/Cpp-Template-Sub1-Sub"]
+	path = include/Cpp-Template-Sub1-Sub
+	url = https://github.com/p-hofmann/Cpp-Template-Sub1-Sub.git
+	branch = master
