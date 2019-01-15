@@ -17,7 +17,7 @@ if (NOT TARGET catch2_project)
         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
         GIT_TAG origin/master
         CONFIGURE_COMMAND ""
-        BUILD_COMMAND ""
+#        BUILD_COMMAND ""
         INSTALL_COMMAND ""
     )
     #        PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2
