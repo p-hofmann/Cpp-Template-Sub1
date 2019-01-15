@@ -3,12 +3,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: "circleci/clojure"
+      - image: "circleci/python"
     steps:
       - checkout
-      - run:
-          name: Installing SUDO
-          command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
       - run:
           name: Installing GCC
           command: 'apt-get update && apt-get install -y gcc g++'
