@@ -27,7 +27,6 @@ if (NOT TARGET catch2_project)
     ExternalProject_Get_Property(catch2_project SOURCE_DIR)
 
     # path to directory containing catch2 header
-    set(CATCH2_INCLUDE_DIR ${SOURCE_DIR}/single_include/catch2)
 endif ()
 
 ###############
@@ -83,7 +82,7 @@ target_include_directories(${TEST_PROJECT_NAME}
         ${INCLUDE_LOCATION}/Cpp-Template-Sub1
     PRIVATE
         ${SRC_LOCATION}
-        ${CATCH2_INCLUDE_DIR}
+        ${SOURCE_DIR}/single_include/catch2
     )
 # Note, that the catch2 library location was added
 
