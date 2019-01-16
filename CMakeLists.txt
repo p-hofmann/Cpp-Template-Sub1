@@ -15,22 +15,9 @@ if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     add_definitions(-DBUILD_ARCH_64BIT)
 endif ()
 
-# Gather src files that depending on a specific OS
-#if (UNIX)
-#    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-#        set(PLATFORM_DEPENENT_FILES )
-#    else ()
-#        set(PLATFORM_DEPENENT_FILES )
-#    endif ()
-#elseif (WIN32)
-#    set(PLATFORM_DEPENENT_FILES )
-#else ()
-#    message(SEND_ERROR "Unknown OS")
-#endif ()
-
 # Make a static library
 add_library(CppTemplateSub1
-    src/cpptemplatesub1.cpp include/Cpp-Template-Sub1/cpptemplatesub1.h
+    src/cpptemplatesub1.cpp include/cpptemplatesub1.h
 #    ${PLATFORM_DEPENENT_FILES}
     )
 
@@ -42,7 +29,7 @@ target_include_directories(CppTemplateSub1
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Cpp-Template-Sub1
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
@@ -57,6 +44,3 @@ add_subdirectory(include/Cpp-Template-Sub1-Sub)
 # This is done before submodules, or the catch2 will be cloned to the submodule location
 enable_testing()
 add_subdirectory(tests)
-
-# add submodule library
-#add_subdirectory(include/Cpp-Template-Sub1-Sub)

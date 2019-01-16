@@ -19,25 +19,11 @@ endif ()
 set(SRC_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 set(INCLUDE_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-
-# Gather src files that depending on a specific OS
-#if (UNIX)
-#    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-#        set(PLATFORM_DEPENENT_FILES)
-#    else ()
-#        set(PLATFORM_DEPENENT_FILES)
-#    endif ()
-#elseif (WIN32)
-#    set(PLATFORM_DEPENENT_FILES)
-#else ()
-#    message(SEND_ERROR "Unknown OS")
-#endif ()
-
 # Project will be made into an executable
 add_executable(${TEST_PROJECT_NAME}
     test_cpptemplatesub1.cpp
 #    ${PLATFORM_DEPENENT_FILES}
-    ${SRC_LOCATION}/cpptemplatesub1.cpp ${INCLUDE_LOCATION}/Cpp-Template-Sub1/cpptemplatesub1.h
+    ${SRC_LOCATION}/cpptemplatesub1.cpp ${INCLUDE_LOCATION}/cpptemplatesub1.h
     )
 
 # add submodule library
@@ -54,7 +40,7 @@ target_include_directories(${TEST_PROJECT_NAME}
     PUBLIC
         $<BUILD_INTERFACE:${INCLUDE_LOCATION}>
         $<INSTALL_INTERFACE:${INCLUDE_LOCATION}>
-        ${INCLUDE_LOCATION}/Cpp-Template-Sub1
+        ${INCLUDE_LOCATION}
     PRIVATE
         ${SRC_LOCATION}
         ${SOURCE_DIR}/single_include/catch2
