@@ -17,6 +17,7 @@ namespace SubModule1
         /// Dummy value
         std::string _dummyValue = "DummyValueSub1";
     public:
+        using NamedClass::NamedClass;
         /**
          * Name of Class
          * Returns name of the class
