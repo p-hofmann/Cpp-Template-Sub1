@@ -2,35 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 11)
 
 ###############
-# Prepare Unittest library CATCH
-# https://github.com/catchorg/Catch2/blob/master/single_include/catch2/catch.hpp
-###############
-
-# needed in case it is loaded from another project
-if (NOT TARGET catch2_project)
-    # git clone the repository
-    include(ExternalProject)
-    ExternalProject_Add(
-        catch2_project
-        PREFIX ${CMAKE_BINARY_DIR}/catch2
-        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2
-        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG origin/master
-#        GIT_SHALLOW 1
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND ""
-        INSTALL_COMMAND ""
-    )
-    # CONFIGURE BUILD and INSTALL are passed an empty string to prevent those unrequired steps.
-
-    # save location git repository in SOURCE_DIR
-    ExternalProject_Get_Property(catch2_project SOURCE_DIR)
-
-    # path to directory containing catch2 header
-    set(CATCH2_INCLUDE_DIR ${SOURCE_DIR}/single_include/catch2)
-endif ()
-
-###############
 # Unittests
 ###############
 
@@ -50,25 +21,33 @@ set(INCLUDE_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
 # Gather src files that depending on a specific OS
-if (UNIX)
-    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        set(PLATFORM_DEPENENT_FILES)
-    else ()
-        set(PLATFORM_DEPENENT_FILES)
-    endif ()
-elseif (WIN32)
-    set(PLATFORM_DEPENENT_FILES)
-else ()
-    message(SEND_ERROR "Unknown OS")
-endif ()
+#if (UNIX)
+#    if (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+#        set(PLATFORM_DEPENENT_FILES)
+#    else ()
+#        set(PLATFORM_DEPENENT_FILES)
+#    endif ()
+#elseif (WIN32)
+#    set(PLATFORM_DEPENENT_FILES)
+#else ()
+#    message(SEND_ERROR "Unknown OS")
+#endif ()
 
 # Project will be made into an executable
 add_executable(${TEST_PROJECT_NAME}
     test_cpptemplatesub1.cpp
-    ${PLATFORM_DEPENENT_FILES}
+#    ${PLATFORM_DEPENENT_FILES}
     ${SRC_LOCATION}/cpptemplatesub1.cpp ${INCLUDE_LOCATION}/Cpp-Template-Sub1/cpptemplatesub1.h
-    ${INCLUDE_LOCATION}/Cpp-Template-Sub1-Sub/include/cpptemplatesub1sub.h
     )
+
+# add submodule library
+target_link_libraries(${TEST_PROJECT_NAME} CppTemplateSub1Sub CppTemplateSub1)
+
+# Make sure that Catch2 exists
+add_dependencies(${TEST_PROJECT_NAME} catch2_project)
+
+# get catch2 src directory
+ExternalProject_Get_Property(catch2_project SOURCE_DIR)
 
 # This will specify for this project only, /src and /include as the folders to look into for files
 target_include_directories(${TEST_PROJECT_NAME}
@@ -76,17 +55,13 @@ target_include_directories(${TEST_PROJECT_NAME}
         $<BUILD_INTERFACE:${INCLUDE_LOCATION}>
         $<INSTALL_INTERFACE:${INCLUDE_LOCATION}>
         ${INCLUDE_LOCATION}/Cpp-Template-Sub1
-        ${INCLUDE_LOCATION}/Cpp-Template-Sub1-Sub/include
     PRIVATE
         ${SRC_LOCATION}
-        ${CATCH2_INCLUDE_DIR}
+        ${SOURCE_DIR}/single_include/catch2
     )
-# Note, that the catch2 library lcation was added
-
-# Make sure that Catch2 exists
-add_dependencies(${TEST_PROJECT_NAME} catch2_project)
+# Note, that the catch2 library location was added
 
 # Adding test for 'ctest'
 add_test(
     NAME ${TEST_PROJECT_NAME}
-    COMMAND ${TEST_PROJECT_NAME} -r junit >> /tmp/test-results/junit.xml)
+    COMMAND ${TEST_PROJECT_NAME})
